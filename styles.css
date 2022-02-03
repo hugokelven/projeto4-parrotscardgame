@@ -39,7 +39,11 @@ main {
 }
   
 /* Do an horizontal flip when you move the mouse over the flip box container */
-.card:hover .card-inner {
+/* .card:hover .card-inner {
+    transform: rotateY(180deg);
+} */
+
+.card .card-inner.flip {
     transform: rotateY(180deg);
 }
   

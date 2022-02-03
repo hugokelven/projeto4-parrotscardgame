@@ -1,20 +1,20 @@
-let numeroDeCartas = null
+let cardsNumber = null
 
-function selecionarJogo() {
-    numeroDeCartas = prompt("Quantas cartas você deseja? (números pares de 4 a 14)")
+function selectGame() {
+    cardsNumber = prompt("Quantas cartas você deseja? (números pares de 4 a 14)")
 
-    while (numeroDeCartas > 14 || numeroDeCartas < 4 || numeroDeCartas%2 !== 0) {
-        numeroDeCartas = prompt("Quantas cartas você deseja? (números pares de 4 a 14)")
+    while (cardsNumber > 14 || cardsNumber < 4 || cardsNumber%2 !== 0) {
+        cardsNumber = prompt("Quantas cartas você deseja? (números pares de 4 a 14)")
     }
 }
 
-selecionarJogo()
+selectGame()
 
 function comparador() { 
 	return Math.random() - 0.5; 
 }
 
-function gerarCartas() {
+function displayCards() {
     const gifs = document.querySelectorAll(".gifs img")
     let main = document.querySelector("main")
     let card = document.querySelector(".card")
@@ -22,9 +22,7 @@ function gerarCartas() {
 
     main.innerHTML = ""
 
-    let cards = []
-
-    for (let i = 0; i < numeroDeCartas/2; i++) {
+    for (let i = 0; i < cardsNumber/2; i++) {
         cardBack.innerHTML = ""
         cardBack.appendChild(gifs[i])
         main.appendChild(card.cloneNode(true))
@@ -37,9 +35,34 @@ function gerarCartas() {
 
     main.innerHTML = ""
 
-    for (let j = 0; j < numeroDeCartas; j++) {
+    for (let j = 0; j < cardsNumber; j++) {
         main.appendChild(newMain[j].cloneNode(true))
     }
 }
 
-gerarCartas()
+displayCards()
+
+let flipedCards = []
+
+function flipCard(card) {
+    if (!card.classList.contains("flip")) {
+        flipedCards.push(card)
+        card.classList.add("flip")
+    } else { }
+
+    if (flipedCards.length%2 === 0) {
+        compareCards()
+    } else { }
+}
+
+function compareCards() {
+    const lastFlipedCard = flipedCards[flipedCards.length-1]
+    const penultFlipedCard = flipedCards[flipedCards.length-2]
+
+    if (!lastFlipedCard.isEqualNode(penultFlipedCard)) {
+        setTimeout(function () {
+            lastFlipedCard.classList.remove("flip")
+            penultFlipedCard.classList.remove("flip")
+        }, 1000)
+    }
+}
