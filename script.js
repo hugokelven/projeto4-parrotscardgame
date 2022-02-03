@@ -1,10 +1,10 @@
-let cardsNumber = null
+let numberOfCards = null
 
 function selectGame() {
 
-    while (cardsNumber > 14 || cardsNumber < 4 || cardsNumber%2 !== 0) {
+    while (numberOfCards > 14 || numberOfCards < 4 || numberOfCards%2 !== 0) {
 
-        cardsNumber = prompt("Quantas cartas você deseja? (números pares de 4 a 14)")
+        numberOfCards = prompt("Quantas cartas você deseja? (números pares de 4 a 14)")
 
     }
 
@@ -27,7 +27,7 @@ function displayCards() {
 
     main.innerHTML = ""
 
-    for (let i = 0; i < cardsNumber/2; i++) {
+    for (let i = 0; i < numberOfCards/2; i++) {
 
         cardBack.innerHTML = ""
         cardBack.appendChild(gifs[i])
@@ -42,7 +42,7 @@ function displayCards() {
 
     main.innerHTML = ""
 
-    for (let j = 0; j < cardsNumber; j++) {
+    for (let j = 0; j < numberOfCards; j++) {
 
         main.appendChild(newMain[j].cloneNode(true))
 
@@ -51,10 +51,22 @@ function displayCards() {
 
 displayCards()
 
-let startTime = performance.now()
-
 let flipedCards = []
+
 let numberOfturnedDownCards = 0
+
+let numberOfCardsUp = 0
+
+let gameTime = 0
+
+setInterval(() => {
+
+    gameTime++
+    
+    const counter = document.querySelector(".game-time")
+    counter.innerHTML = gameTime
+
+}, 1000)
 
 function flipCard(card) {
 
@@ -75,7 +87,7 @@ function compareCards() {
 
     if (flipedCards.length%2 === 0) {
 
-        setTimeout(function () {
+        setTimeout(() => {
 
             if (!lastFlipedCard.isEqualNode(penultFlipedCard)) {
 
@@ -88,11 +100,7 @@ function compareCards() {
             numberOfFlips = flipedCards.length
             numberOfCardsUp = numberOfFlips - numberOfturnedDownCards
     
-            if (numberOfCardsUp === parseInt(cardsNumber)) {
-
-                let endTime = performance.now()
-                gameTime = (endTime - startTime)/1000
-                gameTime = parseInt(gameTime)
+            if (numberOfCardsUp === parseInt(numberOfCards)) {
 
                 alert(`Você ganhou em ${numberOfFlips} jogadas e em ${gameTime}s!`)
 

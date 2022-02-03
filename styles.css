@@ -3,18 +3,27 @@
 }
 
 body {
+    font-family: 'Roboto', sans-serif;
     background-color: #EEF9BF;
     text-align: center;
 }
 
 h1 {
-    font-family: 'Roboto', sans-serif;
     font-size: 56px;
     margin: 40px auto;
     color: #75B79E;
 }
 
+.game-time {
+    position: fixed;
+    top: 95px;
+    right: 10%;
+    font-size: 50px;
+    color: red;
+}
+
 main {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
