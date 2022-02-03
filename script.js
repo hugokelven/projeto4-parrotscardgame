@@ -43,6 +43,7 @@ function displayCards() {
 displayCards()
 
 let flipedCards = []
+let numberOfturnedDownCards = 0
 
 function flipCard(card) {
     if (!card.classList.contains("flip")) {
@@ -50,19 +51,28 @@ function flipCard(card) {
         card.classList.add("flip")
     } else { }
 
-    if (flipedCards.length%2 === 0) {
-        compareCards()
-    } else { }
+    compareCards()
 }
 
 function compareCards() {
     const lastFlipedCard = flipedCards[flipedCards.length-1]
     const penultFlipedCard = flipedCards[flipedCards.length-2]
 
-    if (!lastFlipedCard.isEqualNode(penultFlipedCard)) {
+    if (flipedCards.length%2 === 0) {
         setTimeout(function () {
-            lastFlipedCard.classList.remove("flip")
-            penultFlipedCard.classList.remove("flip")
+            if (!lastFlipedCard.isEqualNode(penultFlipedCard)) {
+                    lastFlipedCard.classList.remove("flip")
+                    penultFlipedCard.classList.remove("flip")
+                    numberOfturnedDownCards += 2
+            } else { }
+    
+            numberOfFlips = flipedCards.length
+            numberOfCardsUp = numberOfFlips - numberOfturnedDownCards
+    
+            if (numberOfCardsUp === parseInt(cardsNumber)) {
+                alert(`Você ganhou em ${numberOfFlips} jogadas!`)
+            } else { }
+    
         }, 1000)
-    }
+    } else { }
 }
