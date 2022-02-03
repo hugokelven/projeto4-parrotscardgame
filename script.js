@@ -42,6 +42,8 @@ function displayCards() {
 
 displayCards()
 
+let startTime = performance.now()
+
 let flipedCards = []
 let numberOfturnedDownCards = 0
 
@@ -70,7 +72,11 @@ function compareCards() {
             numberOfCardsUp = numberOfFlips - numberOfturnedDownCards
     
             if (numberOfCardsUp === parseInt(cardsNumber)) {
-                alert(`Você ganhou em ${numberOfFlips} jogadas!`)
+                let endTime = performance.now()
+                gameTime = (endTime - startTime)/1000
+                gameTime = parseInt(gameTime)
+
+                alert(`Você ganhou em ${numberOfFlips} jogadas e em ${gameTime}s!`)
             } else { }
     
         }, 1000)
