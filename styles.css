@@ -14,6 +14,7 @@ h1 {
     color: #75B79E;
 }
 
+/* Style the game time counter */
 .game-time {
     position: fixed;
     top: 95px;
@@ -30,13 +31,12 @@ main {
     margin: 7px 100px;
 }
 
-/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .card {
     width: 117px;
     height: 146px;
     margin: 17px;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
-  }
+    perspective: 1000px;
+}
   
 /* This container is needed to position the front and back side */
 .card-inner {
@@ -47,7 +47,7 @@ main {
     transform-style: preserve-3d;
 }
   
-/* Do an horizontal flip when you move the mouse over the flip box container */
+/* Do an horizontal flip when you click on the flip box container */
 .card .card-inner.flip {
     transform: rotateY(180deg);
 }
@@ -60,6 +60,10 @@ main {
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
 }
+.card-front img, .card-back img {
+    width: 100px;
+    height: 100px;
+}
   
 /* Style the front side (fallback if image is missing) */
 .card-front {
@@ -68,10 +72,6 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.card-front img {
-    width: 100px;
-    height: 100px;
 }
   
 /* Style the back side */
@@ -83,11 +83,8 @@ main {
     align-items: center;
     transform: rotateY(180deg);
 }
-.card-back img {
-    width: 100px;
-    height: 100px;
-}
 
+/* hide the gifs */
 .gifs {
     display: none;
 }

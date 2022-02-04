@@ -1,5 +1,6 @@
 let numberOfCards = null
 
+// Select how many cards the player wants to play
 function selectGame() {
 
     while (numberOfCards > 14 || numberOfCards < 4 || numberOfCards%2 !== 0) {
@@ -18,7 +19,8 @@ function comparador() {
 
 }
 
-function displayCards() {
+// Distributes the cards on the screen
+function distributesCards() {
 
     const gifs = document.querySelectorAll(".gifs img")
     let main = document.querySelector("main")
@@ -47,9 +49,10 @@ function displayCards() {
         main.appendChild(newMain[j].cloneNode(true))
 
     }
+
 }
 
-displayCards()
+distributesCards()
 
 let flipedCards = []
 
@@ -59,7 +62,8 @@ let numberOfCardsUp = 0
 
 let gameTime = 0
 
-setInterval(() => {
+// Counts the player game time
+const interval = setInterval(() => {
 
     gameTime++
     
@@ -68,6 +72,7 @@ setInterval(() => {
 
 }, 1000)
 
+// Flips up a card
 function flipCard(card) {
 
     if (!card.classList.contains("flip")) {
@@ -80,6 +85,7 @@ function flipCard(card) {
     compareCards()
 }
 
+// Compares if the two cards are equal
 function compareCards() {
 
     const lastFlipedCard = flipedCards[flipedCards.length-1]
@@ -91,9 +97,9 @@ function compareCards() {
 
             if (!lastFlipedCard.isEqualNode(penultFlipedCard)) {
 
-                    lastFlipedCard.classList.remove("flip")
-                    penultFlipedCard.classList.remove("flip")
-                    numberOfturnedDownCards += 2
+                lastFlipedCard.classList.remove("flip")
+                penultFlipedCard.classList.remove("flip")
+                numberOfturnedDownCards += 2
 
             } else { }
     
@@ -114,6 +120,7 @@ function compareCards() {
 
 }
 
+// Asks the player if he/she wants to play again
 function restartGame () {
 
     while (restartGame !== "s") {
@@ -127,9 +134,11 @@ function restartGame () {
 
         } else if (restartGame === "n") {
 
+            clearInterval(interval)
             break
 
         } else { }
+
     }
 
 }
